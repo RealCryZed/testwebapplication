@@ -18,7 +18,6 @@ public class ApplicationStarter {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
         templateResolver.setPrefix("classpath:templates/");
         templateResolver.setSuffix(".html");
-        templateResolver.setCacheable(false); //make cacheable in future
         templateResolver.setTemplateMode(TemplateMode.HTML);
         return templateResolver;
     }
