@@ -9,14 +9,20 @@
 <body>
     <div class="main-container">
         <h1>Добро пожаловать в приложение тестового задания!</h1>
-        <form method="post" th:action="@{/select}" th:object="${tasks}" class="add-match-form">
-        <select name="example">
-            <option disabled selected hidden>Выберите задачу</option>
-            <option th:each="task : ${tasks}"
-                    th:value="${task}" th:text="${task}"></option>
-        </select>
-            <button type="submit">Выбрать</button>
-        </form>
+
+        <a th:href="@{/task/1}">Задача 1</a>
+        <a th:href="@{/task/2}">Задача 2</a>
+
+<!--        <form method="post" th:action="@{/}" th:object="${selectedTask}">-->
+<!--            <select name="example">-->
+<!--                <option disabled selected hidden>Выберите задачу</option>-->
+<!--                <option value="1">Задача 1</option>-->
+<!--                <option value="2">Задача 2</option>-->
+<!--&lt;!&ndash;                <option th:each="task : ${tasks}" th:value="${task.getId()}"&ndash;&gt;-->
+<!--&lt;!&ndash;                        th:text="${task.getTaskName()}"></option>&ndash;&gt;-->
+<!--            </select>-->
+<!--            <button type="submit">Выбрать</button>-->
+<!--        </form>-->
     </div>
 </body>
 </html>

@@ -1,0 +1,18 @@
+<!--<select id="task">-->
+<!--    <option value="1">a</option>-->
+<!--    <option value="2">b</option>-->
+<!--    <option value="3">c</option>-->
+<!--</select>-->
+<!--<form onsubmit="gatherComboBox(this)" action="" method="">-->
+<!--    <button type="submit">Выбрать</button>-->
+<!--</form>-->
+<!--<script>-->
+<!--    function gatherComboBox(f){-->
+<!--        var s=document.getElementById('task'), i=document.createElement('input');-->
+<!--        s=s.options[s.selectedIndex].value;-->
+<!--        i.setAttribute('type','hidden');-->
+<!--        i.setAttribute('name','task');-->
+<!--        i.setAttribute('value',s);-->
+<!--        f.appendChild(i);-->
+<!--    }-->
+<!--</script>-->

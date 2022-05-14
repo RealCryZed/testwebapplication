@@ -1,15 +1,10 @@
 package testwebapplication;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 public class MainController {
@@ -18,25 +13,60 @@ public class MainController {
     public ModelAndView home() {
         ModelAndView mv = new ModelAndView();
 
-        ArrayList<String> listOfTasks = new ArrayList<>();
-        listOfTasks.add("Задача 1");
-        listOfTasks.add("Задача 2");
+        ArrayList<Task> tasks = new ArrayList<>();
+        tasks.add(new Task(1, "Задача 1"));
+        tasks.add(new Task(2, "Задача 2"));
 
-        FirstTask.inArray();
+        mv.addObject("tasks", tasks);
+        mv.addObject("selectedTask", new Task());
 
         mv.setViewName("home");
-        mv.addObject("tasks", listOfTasks);
-
         return mv;
     }
 
-    @PostMapping("/select")
-    public ModelAndView select(@RequestParam("task") String task) {
+//    @PostMapping("/")
+//    public ModelAndView selectTask(Task selectedTask, Model model) {
+//        ModelAndView mv = new ModelAndView();
+//        model.addAttribute("task", selectedTask);
+//
+//        System.out.println(selectedTask.getTaskName());
+//
+//        mv.setViewName("task1");
+//        return mv;
+//    }
+
+//    @GetMapping("task")
+//    public ModelAndView getTask() {
+//        ModelAndView mv = new ModelAndView();
+//
+//        mv.setViewName("task");
+//
+//        return mv;
+//    }
+
+    @GetMapping("/task/1")
+    public ModelAndView task1() {
         ModelAndView mv = new ModelAndView();
-        System.out.println(task);
-        mv.setViewName("redirect:/");
+
+        mv.setViewName("task1");
+        return mv;
+    }
+
+    @GetMapping("/task/2")
+    public ModelAndView task2() {
+        ModelAndView mv = new ModelAndView();
+
+        mv.setViewName("task2");
+        return mv;
+    }
+
+    @PostMapping("/getTask1Result")
+    public ModelAndView task1Result() {
+        ModelAndView mv = new ModelAndView();
 
 
+
+        mv.setViewName("task1");
         return mv;
     }
 }

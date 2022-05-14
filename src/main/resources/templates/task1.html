@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 1</title>
+</head>
+<body>
+    <a href="#">Загрузить</a>
+    <a href="#">Сохранить</a>
+    <a href="#">Импортировать</a>
+    <a href="#">Экспортировать</a>
+
+    <form method="post" th:action="@{/getTask1Result}">
+        <label for="firstArray">Введите первый массив слов через пробел</label><br/>
+        <input id="firstArray" placeholder="Массив слов"><br/>
+        <label for="secondArray">Введите второй массив слов через пробел</label><br/>
+        <input id="secondArray" placeholder="Массив слов"><br/>
+
+        <button type="submit">Посчитать</button>
+    </form>
+
+    <p>Результат: </p>
+</body>
+</html>
