@@ -11,15 +11,16 @@
     <a href="#">Импортировать</a>
     <a href="#">Экспортировать</a>
 
-    <form method="post" th:action="@{/getTask1Result}">
+    <form method="post" th:action="@{/task/1}" th:object="${taskResult}">
         <label for="firstArray">Введите первый массив слов через пробел</label><br/>
-        <input id="firstArray" placeholder="Массив слов"><br/>
+        <input id="firstArray" th:field="${task.sequence1}" placeholder="Массив слов 1"><br/>
         <label for="secondArray">Введите второй массив слов через пробел</label><br/>
-        <input id="secondArray" placeholder="Массив слов"><br/>
+        <input id="secondArray" th:field="${task.sequence2}" placeholder="Массив слов 2"><br/>
 
         <button type="submit">Посчитать</button>
     </form>
 
     <p>Результат: </p>
+    <p th:text="${taskResult}"></p>
 </body>
 </html>
