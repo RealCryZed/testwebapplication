@@ -1,6 +1,7 @@
-package testwebapplication;
+package testwebapplication.Functions;
 
 import org.springframework.stereotype.Service;
+import testwebapplication.Model.Task1;
 
 import java.util.Set;
 import java.util.TreeSet;

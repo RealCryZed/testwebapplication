@@ -4,12 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Task 1</title>
+    <link type="text/css" rel="stylesheet" th:href="@{/styles/task1.css}" />
 </head>
 <body>
-    <a href="#">Загрузить</a>
-    <a href="#">Сохранить</a>
-    <a href="#">Импортировать</a>
-    <a href="#">Экспортировать</a>
+    <div class="navbar">
+        <form method="post">
+            <button type="button">Загрузить</button>
+        </form>
+
+        <form method="post">
+            <button type="button">Сохранить</button>
+        </form>
+
+        <form method="post" th:action="@{/upload}" enctype="multipart/form-data">
+            <input type="file" name="file">
+            <button type="submit">Импортировать</button>
+        </form>
+
+        <form method="post" th:action="@{/download}">
+            <button type="submit">Экспортировать</button>
+        </form>
+    </div>
 
     <form method="post" th:action="@{/task/1}" th:object="${taskResult}">
         <label for="firstArray">Введите первый массив слов через пробел</label><br/>

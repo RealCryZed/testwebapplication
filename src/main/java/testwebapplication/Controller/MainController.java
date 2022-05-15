@@ -1,20 +1,22 @@
-package testwebapplication;
+package testwebapplication.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.ArrayList;
-
-import javax.validation.Valid;
+import testwebapplication.Functions.FileService;
+import testwebapplication.Functions.FirstTaskCore;
+import testwebapplication.Model.Task1;
 
 @Controller
 public class MainController {
 
     @Autowired
     private FirstTaskCore firstTask;
+
+    @Autowired
+    private FileService fileService;
 
     @GetMapping("/")
     public ModelAndView home() {
@@ -42,11 +44,11 @@ public class MainController {
     @PostMapping("/task/1")
     public ModelAndView task1Result(Task1 task1) {
         ModelAndView mv = new ModelAndView();
-        mv.addObject("task", new Task1());
-        System.out.println(task1);
-        mv.addObject("taskResult", firstTask.getSimilarCharacters(task1));
 
+        mv.addObject("task", new Task1());
+        mv.addObject("taskResult", firstTask.getSimilarCharacters(task1));
         mv.setViewName("task1");
+
         return mv;
     }
 
@@ -55,6 +57,25 @@ public class MainController {
         ModelAndView mv = new ModelAndView();
 
         mv.setViewName("task2");
+        return mv;
+    }
+
+    @PostMapping("/upload")
+    public ModelAndView uploadFIle(@RequestParam("file") MultipartFile file) {
+        ModelAndView mv = new ModelAndView();
+
+        mv.addObject("task", new Task1());
+        mv.addObject("taskResult", fileService.uploadFileAndGetResult(file));
+        mv.setViewName("task1");
+
+        return mv;
+    }
+
+    @PostMapping("/download")
+    public ModelAndView importFile() {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("task1");
+
         return mv;
     }
 }

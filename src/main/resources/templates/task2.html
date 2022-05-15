@@ -3,14 +3,28 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>task i don't know</title>
+    <title>Task 2</title>
     <link type="text/css" rel="stylesheet" th:href="@{/styles/task2.css}" />
 </head>
 <body>
-    <a href="#">Загрузить</a>
-    <a href="#">Сохранить</a>
-    <a href="#">Импортировать</a>
-    <a href="#">Экспортировать</a>
+    <div class="navbar">
+        <form method="post">
+            <button type="button">Загрузить</button>
+        </form>
+
+        <form method="post">
+            <button type="button">Сохранить</button>
+        </form>
+
+        <form method="post" th:action="@{/upload}" enctype="multipart/form-data">
+            <input type="file" name="file">
+            <button type="submit">Импортировать</button>
+        </form>
+
+        <form method="post" th:action="@{/download}">
+            <button type="submit">Экспортировать</button>
+        </form>
+    </div>
 
     <form th:action="@{/getTask2Result}">
         <table>

@@ -1,0 +1,9 @@
+body {
+    margin: 0 25%;
+}
+
+.navbar {
+    display: flex;
+    margin: 50px 0;
+    justify-content: center;
+}
