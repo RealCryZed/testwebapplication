@@ -9,6 +9,10 @@ import testwebapplication.Functions.FileService;
 import testwebapplication.Functions.FirstTaskCore;
 import testwebapplication.Model.Task1;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 @Controller
 public class MainController {
 
@@ -46,6 +50,7 @@ public class MainController {
         ModelAndView mv = new ModelAndView();
 
         mv.addObject("task", new Task1());
+        mv.addObject("taskCall", "Результат:");
         mv.addObject("taskResult", firstTask.getSimilarCharacters(task1));
         mv.setViewName("task1");
 
@@ -65,7 +70,11 @@ public class MainController {
         ModelAndView mv = new ModelAndView();
 
         mv.addObject("task", new Task1());
+        mv.addObject("taskCall", "Результат, полученный из файла ");
+        mv.addObject("taskFileName", file.getOriginalFilename());
         mv.addObject("taskResult", fileService.uploadFileAndGetResult(file));
+        mv.addObject("taskParameters", Arrays.asList(fileService.getContentByLines(file)));
+
         mv.setViewName("task1");
 
         return mv;

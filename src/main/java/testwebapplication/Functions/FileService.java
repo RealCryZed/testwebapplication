@@ -20,21 +20,26 @@ public class FileService {
     }
 
     public Set<String> uploadFileAndGetResult(MultipartFile file) {
-        Set<String> result = new HashSet<>();
         Task1 task1 = new Task1();
+
+        String[] lines = getContentByLines(file);
+
+        task1.setSequence1(lines[0]);
+        task1.setSequence2(lines[1]);
+
+        return firstTaskCore.getSimilarCharacters(task1);
+    }
+
+    public String[] getContentByLines(MultipartFile file) {
+        String[] lines = new String[]{};
+
         try {
             String content = new String(file.getBytes());
-
-            String[] lines = content.split("\\r?\\n");
-
-            task1.setSequence1(lines[0]);
-            task1.setSequence2(lines[1]);
-
-            result = firstTaskCore.getSimilarCharacters(task1);
+            lines = content.split("\\r?\\n");
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        return result;
+        return lines;
     }
 }

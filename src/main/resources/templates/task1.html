@@ -35,7 +35,13 @@
         <button type="submit">Посчитать</button>
     </form>
 
-    <p>Результат: </p>
-    <p th:text="${taskResult}"></p>
+    <div class="result-set-div" th:if="${(taskResult != null)}">
+        <h4 th:if="${(taskFileName != null)}" class="result-set" th:text="${taskCall} + ${taskFileName} + ' с массивами:'"></h4>
+        <h4 th:if="${(taskFileName == null)}" class="result-set" th:text="${taskCall}"></h4>
+        <div class="result-parameters" th:if="${(taskParameters != null)}">
+            <h4 class="result-set" th:each="parameter : ${taskParameters}" th:text="${parameter}"></h4>
+        </div>
+        <h4 class="result-set" th:text="${taskResult}"></h4>
+    </div>
 </body>
 </html>

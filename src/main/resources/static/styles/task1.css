@@ -7,3 +7,15 @@ body {
     margin: 50px 0;
     justify-content: center;
 }
+
+.result-set-div {
+    margin-top: 20px;
+}
+
+.result-set {
+    margin: 0;
+}
+
+.result-parameters {
+    margin: 20px 0;
+}
