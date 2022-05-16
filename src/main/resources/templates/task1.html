@@ -12,10 +12,6 @@
             <button type="button">Загрузить</button>
         </form>
 
-        <form method="post">
-            <button type="button">Сохранить</button>
-        </form>
-
         <form method="post" th:action="@{/upload}" enctype="multipart/form-data">
             <input type="file" name="file">
             <button type="submit">Импортировать</button>
@@ -31,7 +27,7 @@
 
         <button type="submit" name="action" value="calc">Посчитать</button>
         <button type="submit" name="action" value="download">Экспортировать</button>
-<!--        <a th:href="@{/task/1/task1_inputs.txt}">Экспортировать</a>-->
+        <button type="button" name="action" value="save">Сохранить в БД</button>
     </form>
 
     <div class="result-set-div" th:if="${(taskResult != null)}">

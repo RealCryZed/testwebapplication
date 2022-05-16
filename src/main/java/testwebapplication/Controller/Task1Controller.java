@@ -93,4 +93,9 @@ public class Task1Controller {
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
                 .body(resource);
     }
+
+//    @PostMapping(value = "/task/1", params = "action=save")
+//    public ResponseEntity<Resource> saveInBD(Task1 task1) throws IOException {
+//
+//    }
 }
