@@ -21,9 +21,6 @@
             <button type="submit">Импортировать</button>
         </form>
 
-        <form method="post" th:action="@{/download}">
-            <button type="submit">Экспортировать</button>
-        </form>
     </div>
 
     <form method="post" th:action="@{/task/1}" th:object="${taskResult}">
@@ -32,7 +29,9 @@
         <label for="secondArray">Введите второй массив слов через пробел</label><br/>
         <input id="secondArray" th:field="${task.sequence2}" placeholder="Массив слов 2"><br/>
 
-        <button type="submit">Посчитать</button>
+        <button type="submit" name="action" value="calc">Посчитать</button>
+        <button type="submit" name="action" value="download">Экспортировать</button>
+<!--        <a th:href="@{/task/1/task1_inputs.txt}">Экспортировать</a>-->
     </form>
 
     <div class="result-set-div" th:if="${(taskResult != null)}">

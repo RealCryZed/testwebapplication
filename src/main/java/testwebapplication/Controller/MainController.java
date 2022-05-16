@@ -1,6 +1,12 @@
 package testwebapplication.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -9,18 +15,14 @@ import testwebapplication.Functions.FileService;
 import testwebapplication.Functions.FirstTaskCore;
 import testwebapplication.Model.Task1;
 
-import java.io.IOException;
-import java.util.ArrayList;
+import java.io.*;
+import java.net.MalformedURLException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 
 @Controller
 public class MainController {
-
-    @Autowired
-    private FirstTaskCore firstTask;
-
-    @Autowired
-    private FileService fileService;
 
     @GetMapping("/")
     public ModelAndView home() {
@@ -34,57 +36,6 @@ public class MainController {
 //        mv.addObject("selectedTask", new Task());
 
         mv.setViewName("home");
-        return mv;
-    }
-    @GetMapping("/task/1")
-    public ModelAndView task1() {
-        ModelAndView mv = new ModelAndView();
-
-        mv.addObject("task", new Task1());
-        mv.setViewName("task1");
-        return mv;
-    }
-
-    @PostMapping("/task/1")
-    public ModelAndView task1Result(Task1 task1) {
-        ModelAndView mv = new ModelAndView();
-
-        mv.addObject("task", new Task1());
-        mv.addObject("taskCall", "Результат:");
-        mv.addObject("taskResult", firstTask.getSimilarCharacters(task1));
-        mv.setViewName("task1");
-
-        return mv;
-    }
-
-    @GetMapping("/task/2")
-    public ModelAndView task2() {
-        ModelAndView mv = new ModelAndView();
-
-        mv.setViewName("task2");
-        return mv;
-    }
-
-    @PostMapping("/upload")
-    public ModelAndView uploadFIle(@RequestParam("file") MultipartFile file) {
-        ModelAndView mv = new ModelAndView();
-
-        mv.addObject("task", new Task1());
-        mv.addObject("taskCall", "Результат, полученный из файла ");
-        mv.addObject("taskFileName", file.getOriginalFilename());
-        mv.addObject("taskResult", fileService.uploadFileAndGetResult(file));
-        mv.addObject("taskParameters", Arrays.asList(fileService.getContentByLines(file)));
-
-        mv.setViewName("task1");
-
-        return mv;
-    }
-
-    @PostMapping("/download")
-    public ModelAndView importFile() {
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("task1");
-
         return mv;
     }
 }
