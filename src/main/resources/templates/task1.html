@@ -27,7 +27,7 @@
         </form>
     </div>
 
-    <form class="forms" method="post" th:action="@{/task/1}" th:object="${taskResult}">
+    <form th:if="${(dbRecords == null)}" class="forms" method="post" th:action="@{/task/1}" th:object="${taskResult}">
         <label for="firstArray">Введите первый массив слов через пробел</label><br/>
         <input id="firstArray" th:field="${task.sequence1}" placeholder="Массив слов 1"><br/>
         <label for="secondArray">Введите второй массив слов через пробел</label><br/>
