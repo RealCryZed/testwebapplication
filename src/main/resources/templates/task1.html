@@ -13,8 +13,17 @@
             <button type="submit">Импортировать</button>
         </form>
 
-        <form class="forms" method="post">
-            <button type="button">Загрузить</button>
+        <form class="forms" method="post" th:action="@{/task/1/load-data}">
+            <button type="submit">Загрузить</button>
+        </form>
+
+        <form class="forms" th:if="${(dbRecords != null)}" method="post" th:action="@{/task/1/load-data/result}">
+            <select th:object="${dbRecords}" name="recordName">
+                <option th:each="record : ${dbRecords}"
+                        th:text="${record.getId()} + ') ' + ${record.getSequence1()} + '; ' + ${record.getSequence2()}"
+                        th:value="${record.getId()}"></option>
+            </select>
+            <button type="submit">Посчитать</button>
         </form>
     </div>
 

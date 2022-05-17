@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,6 +15,7 @@ import testwebapplication.Functions.FileService;
 import testwebapplication.Functions.FirstTaskCore;
 import testwebapplication.Model.Task1;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.Arrays;
 
@@ -60,6 +62,30 @@ public class Task1Controller {
         mv.addObject("taskResult", fileService.uploadFileAndGetResult(file));
         mv.addObject("taskParameters", Arrays.asList(fileService.getContentByLines(file)));
 
+        mv.setViewName("task1");
+
+        return mv;
+    }
+
+    @PostMapping("/task/1/load-data")
+    public ModelAndView loadFromDB() {
+        ModelAndView mv = new ModelAndView();
+
+        mv.addObject("task", new Task1());
+        mv.addObject("dbRecords", dbService.getDbRecords());
+        mv.setViewName("task1");
+
+        return mv;
+    }
+
+    @PostMapping("/task/1/load-data/result")
+    public ModelAndView loadFromDBandCalc(HttpServletRequest request) {
+        ModelAndView mv = new ModelAndView();
+        Task1 task1 = dbService.getTask(Integer.valueOf(request.getParameter("recordName")));
+
+        mv.addObject("task", new Task1());
+        mv.addObject("taskCall", "Результат:");
+        mv.addObject("taskResult", firstTask.getSimilarCharacters(task1));
         mv.setViewName("task1");
 
         return mv;
