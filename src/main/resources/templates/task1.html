@@ -8,18 +8,17 @@
 </head>
 <body>
     <div class="navbar">
-        <form method="post">
-            <button type="button">Загрузить</button>
-        </form>
-
-        <form method="post" th:action="@{/upload}" enctype="multipart/form-data">
+        <form class="forms" method="post" th:action="@{/upload}" enctype="multipart/form-data">
             <input type="file" name="file">
             <button type="submit">Импортировать</button>
         </form>
 
+        <form class="forms" method="post">
+            <button type="button">Загрузить</button>
+        </form>
     </div>
 
-    <form method="post" th:action="@{/task/1}" th:object="${taskResult}">
+    <form class="forms" method="post" th:action="@{/task/1}" th:object="${taskResult}">
         <label for="firstArray">Введите первый массив слов через пробел</label><br/>
         <input id="firstArray" th:field="${task.sequence1}" placeholder="Массив слов 1"><br/>
         <label for="secondArray">Введите второй массив слов через пробел</label><br/>
@@ -38,5 +37,7 @@
         </div>
         <h4 class="result-set" th:text="${taskResult}"></h4>
     </div>
+
+    <a th:href="@{/}">На главную страницу</a>
 </body>
 </html>

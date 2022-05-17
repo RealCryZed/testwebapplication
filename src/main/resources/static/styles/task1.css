@@ -1,11 +1,15 @@
 body {
-    margin: 0 25%;
+    margin: 0 40%;
+    text-align: center;
+}
+
+.forms {
+    margin: 10px 0;
+    text-align: left;
 }
 
 .navbar {
-    display: flex;
     margin: 50px 0;
-    justify-content: center;
 }
 
 .result-set-div {
