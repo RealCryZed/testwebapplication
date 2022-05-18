@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import testwebapplication.Functions.FileService;
 import testwebapplication.Functions.SecondTaskCore;
-import testwebapplication.Model.Task2;
 
 import java.io.IOException;
 
@@ -26,7 +25,6 @@ public class Task2Controller {
     public ModelAndView task2() {
         ModelAndView mv = new ModelAndView();
 
-        mv.addObject("task", new Task2());
         mv.setViewName("task2");
         return mv;
     }
@@ -37,7 +35,6 @@ public class Task2Controller {
 
         int[][] magicSquare = secondTaskCore.getNewMagicSquare();
 
-        mv.addObject("task", new Task2());
         mv.addObject("taskResult", magicSquare);
         mv.addObject("taskCost", secondTaskCore.calcSum(magicSquare));
         mv.setViewName("task2");
