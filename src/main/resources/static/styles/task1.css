@@ -22,3 +22,11 @@ body {
 .result-parameters {
     margin: 20px 0;
 }
+
+.form-container {
+    display: inline-grid;
+}
+
+.array-input {
+
+}

@@ -15,6 +15,7 @@ import testwebapplication.Functions.FileService;
 import testwebapplication.Functions.FirstTaskCore;
 import testwebapplication.Model.Task1;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.nio.file.Path;
@@ -28,14 +29,16 @@ public class MainController {
     public ModelAndView home() {
         ModelAndView mv = new ModelAndView();
 
-//        ArrayList<Task> tasks = new ArrayList<>();
-//        tasks.add(new Task(1, "Задача 1"));
-//        tasks.add(new Task(2, "Задача 2"));
-//
-//        mv.addObject("tasks", tasks);
-//        mv.addObject("selectedTask", new Task());
-
         mv.setViewName("home");
         return mv;
+    }
+
+    @PostMapping("/")
+    public ModelAndView selectTask(HttpServletRequest request) {
+        ModelAndView modelAndView = new ModelAndView();
+        int taskNumber = Integer.valueOf(request.getParameter("taskNum"));
+
+        modelAndView.setViewName("redirect:/task/" + taskNumber);
+        return modelAndView;
     }
 }

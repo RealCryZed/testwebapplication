@@ -7,66 +7,68 @@
     <link type="text/css" rel="stylesheet" th:href="@{/styles/task2.css}" />
 </head>
 <body>
-    <form th:action="@{/task/2}" method="post" th:object="${taskResult}">
-        <table>
-            <thead>
+    <div class="main-container">
+        <form th:action="@{/task/2}" method="post" th:object="${taskResult}">
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="3">Начальная таблица</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><label>1</label><br/></td>
+                        <td><label>2</label><br/></td>
+                        <td><label>3</label><br/></td>
+                    </tr>
+                    <tr>
+                        <td><label>4</label><br/></td>
+                        <td><label>5</label><br/></td>
+                        <td><label>6</label><br/></td>
+                    </tr>
+                    <tr>
+                        <td><label>7</label><br/></td>
+                        <td><label>8</label><br/></td>
+                        <td><label>9</label><br/></td>
+                    </tr>
+                </tbody>
+            </table><br/>
+
+            <button type="submit" name="action" value="calc">Посчитать</button>
+            <button type="submit" name="action" value="download">Экспортировать</button>
+        </form>
+
+        <div th:if="${(taskResult != null)}">
+            <p>Результат: </p>
+            <table>
+                <thead>
                 <tr>
                     <th colspan="3">The table header</th>
                 </tr>
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
                 <tr>
-                    <td><label>1</label><br/></td>
-                    <td><label>2</label><br/></td>
-                    <td><label>3</label><br/></td>
+                    <td><label th:text="${taskResult[0][0]}"></label></td>
+                    <td><label th:text="${taskResult[0][1]}"></label></td>
+                    <td><label th:text="${taskResult[0][2]}"></label></td>
                 </tr>
                 <tr>
-                    <td><label>4</label><br/></td>
-                    <td><label>5</label><br/></td>
-                    <td><label>6</label><br/></td>
+                    <td><label th:text="${taskResult[1][0]}"></label></td>
+                    <td><label th:text="${taskResult[1][1]}"></label></td>
+                    <td><label th:text="${taskResult[1][2]}"></label></td>
                 </tr>
                 <tr>
-                    <td><label>7</label><br/></td>
-                    <td><label>8</label><br/></td>
-                    <td><label>9</label><br/></td>
+                    <td><label th:text="${taskResult[2][0]}"></label></td>
+                    <td><label th:text="${taskResult[2][1]}"></label></td>
+                    <td><label th:text="${taskResult[2][2]}"></label></td>
                 </tr>
-            </tbody>
-        </table><br/>
+                </tbody>
+            </table>
 
-        <button type="submit" name="action" value="calc">Посчитать</button>
-        <button type="submit" name="action" value="download">Экспортировать</button>
-    </form>
+            <p th:text="'За стоимость, равную ' + ${taskCost}"></p>
+        </div><br/>
 
-    <div th:if="${(taskResult != null)}">
-        <p>Результат: </p>
-        <table>
-            <thead>
-            <tr>
-                <th colspan="3">The table header</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td><label th:text="${taskResult[0][0]}"></label></td>
-                <td><label th:text="${taskResult[0][1]}"></label></td>
-                <td><label th:text="${taskResult[0][2]}"></label></td>
-            </tr>
-            <tr>
-                <td><label th:text="${taskResult[1][0]}"></label></td>
-                <td><label th:text="${taskResult[1][1]}"></label></td>
-                <td><label th:text="${taskResult[1][2]}"></label></td>
-            </tr>
-            <tr>
-                <td><label th:text="${taskResult[2][0]}"></label></td>
-                <td><label th:text="${taskResult[2][1]}"></label></td>
-                <td><label th:text="${taskResult[2][2]}"></label></td>
-            </tr>
-            </tbody>
-        </table>
-
-        <p th:text="'За стоимость, равную ' + ${taskCost}"></p>
-    </div><br/>
-
-    <a th:href="@{/}">На главную страницу</a>
+        <a th:href="@{/}">На главную страницу</a>
+    </div>
 </body>
 </html>

@@ -28,14 +28,16 @@
     </div>
 
     <form th:if="${(dbRecords == null)}" class="forms" method="post" th:action="@{/task/1}" th:object="${taskResult}">
-        <label for="firstArray">Введите первый массив слов через пробел</label><br/>
-        <input id="firstArray" th:field="${task.sequence1}" placeholder="Массив слов 1"><br/>
-        <label for="secondArray">Введите второй массив слов через пробел</label><br/>
-        <input id="secondArray" th:field="${task.sequence2}" placeholder="Массив слов 2"><br/>
+        <div class="form-container">
+            <label for="firstArray">Введите первый массив слов через пробел</label>
+            <input class="array-input" id="firstArray" th:field="${task.sequence1}" placeholder="Массив слов 1"><br/>
+            <label for="secondArray">Введите второй массив слов через пробел</label>
+            <input class="array-input" id="secondArray" th:field="${task.sequence2}" placeholder="Массив слов 2"><br/>
 
-        <button type="submit" name="action" value="calc">Посчитать</button>
-        <button type="submit" name="action" value="download">Экспортировать</button>
-        <button type="submit" name="action" value="save">Сохранить в БД</button>
+            <button type="submit" name="action" value="calc">Посчитать</button>
+            <button type="submit" name="action" value="download">Экспортировать</button>
+            <button type="submit" name="action" value="save">Сохранить в БД</button>
+        </div>
     </form>
 
     <div class="result-set-div" th:if="${(taskResult != null)}">

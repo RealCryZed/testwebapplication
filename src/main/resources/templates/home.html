@@ -10,19 +10,13 @@
     <div class="main-container">
         <h2>Добро пожаловать в приложение тестового задания!</h2>
 
-        <a th:href="@{/task/1}">Задача 1</a>
-        <a th:href="@{/task/2}">Задача 2</a>
-
-<!--        <form method="post" th:action="@{/}" th:object="${selectedTask}">-->
-<!--            <select name="example">-->
-<!--                <option disabled selected hidden>Выберите задачу</option>-->
-<!--                <option value="1">Задача 1</option>-->
-<!--                <option value="2">Задача 2</option>-->
-<!--&lt;!&ndash;                <option th:each="task : ${tasks}" th:value="${task.getId()}"&ndash;&gt;-->
-<!--&lt;!&ndash;                        th:text="${task.getTaskName()}"></option>&ndash;&gt;-->
-<!--            </select>-->
-<!--            <button type="submit">Выбрать</button>-->
-<!--        </form>-->
+        <form method="post" th:action="@{/}">
+            <select name="taskNum">
+                <option value="1">Задача 1</option>
+                <option value="2">Задача 2</option>
+            </select>
+            <button type="submit">Выбрать</button>
+        </form>
     </div>
 </body>
 </html>
