@@ -7,26 +7,37 @@
     <link type="text/css" rel="stylesheet" th:href="@{/styles/task2.css}" />
 </head>
 <body>
-    <div class="navbar">
-        <form method="post">
-            <button type="button">Загрузить</button>
-        </form>
+<!--    <div class="navbar">-->
+<!--        <form class="forms" method="post" th:action="@{/upload}" enctype="multipart/form-data">-->
+<!--            <input type="file" name="file">-->
+<!--            <button type="submit">Импортировать</button>-->
+<!--        </form>-->
 
-        <form method="post">
-            <button type="button">Сохранить</button>
-        </form>
+<!--        <form class="forms" method="post" th:action="@{/task/2/load-data}">-->
+<!--            <button type="submit">Загрузить</button>-->
+<!--        </form>-->
 
-        <form method="post" th:action="@{/upload}" enctype="multipart/form-data">
-            <input type="file" name="file">
-            <button type="submit">Импортировать</button>
-        </form>
+<!--        <form class="forms" th:if="${(dbRecords != null)}" method="post" th:action="@{/task/2/load-data/result}">-->
+<!--            <select th:object="${dbRecords}" name="recordName">-->
+<!--                <option th:each="record : ${dbRecords}"-->
+<!--                        th:text="${record.getId()} + ') ' + ${record.getSequence1()} + '; ' + ${record.getSequence2()}"-->
+<!--                        th:value="${record.getId()}"></option>-->
+<!--            </select>-->
+<!--            <button type="submit">Посчитать</button>-->
+<!--        </form>-->
+<!--    </div>-->
 
-        <form method="post" th:action="@{/download}">
-            <button type="submit">Экспортировать</button>
-        </form>
-    </div>
+<!--    <form method="post">-->
+<!--        <button type="button">Сохранить</button>-->
+<!--    </form>-->
 
-    <form th:action="@{/getTask2Result}">
+<!--    <form method="post" th:action="@{/download}">-->
+<!--        <button type="submit">Экспортировать</button>-->
+<!--    </form>-->
+
+
+
+    <form th:action="@{/task/2}" method="post" th:object="${taskResult}">
         <table>
             <thead>
                 <tr>
@@ -35,50 +46,54 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><input placeholder="Массив слов"><br/></td>
-                    <td><input placeholder="Массив слов"><br/></td>
-                    <td><input placeholder="Массив слов"><br/></td>
+                    <td><label>1</label><br/></td>
+                    <td><label>2</label><br/></td>
+                    <td><label>3</label><br/></td>
                 </tr>
                 <tr>
-                    <td><input placeholder="Массив слов"><br/></td>
-                    <td><input placeholder="Массив слов"><br/></td>
-                    <td><input placeholder="Массив слов"><br/></td>
+                    <td><label>4</label><br/></td>
+                    <td><label>5</label><br/></td>
+                    <td><label>6</label><br/></td>
                 </tr>
                 <tr>
-                    <td><input placeholder="Массив слов"><br/></td>
-                    <td><input placeholder="Массив слов"><br/></td>
-                    <td><input placeholder="Массив слов"><br/></td>
+                    <td><label>7</label><br/></td>
+                    <td><label>8</label><br/></td>
+                    <td><label>9</label><br/></td>
                 </tr>
             </tbody>
         </table>
 
-        <button type="submit">Посчитать</button>
+        <button type="submit" name="action" value="calc">Посчитать</button>
     </form>
 
-    <p>Результат: </p>
-    <table>
-        <thead>
-        <tr>
-            <th colspan="3">The table header</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>Ответ</td>
-            <td>Ответ</td>
-            <td>Ответ</td>
-        </tr>
-        <tr>
-            <td>Ответ</td>
-            <td>Ответ</td>
-            <td>Ответ</td>
-        </tr>
-        <tr>
-            <td>Ответ</td>
-            <td>Ответ</td>
-            <td>Ответ</td>
-        </tr>
-        </tbody>
-    </table>
+    <div th:if="${(taskResult != null)}">
+        <p>Результат: </p>
+        <table>
+            <thead>
+            <tr>
+                <th colspan="3">The table header</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><label th:text="${taskResult[0][0]}"></label></td>
+                <td><label th:text="${taskResult[0][1]}"></label></td>
+                <td><label th:text="${taskResult[0][2]}"></label></td>
+            </tr>
+            <tr>
+                <td><label th:text="${taskResult[1][0]}"></label></td>
+                <td><label th:text="${taskResult[1][1]}"></label></td>
+                <td><label th:text="${taskResult[1][2]}"></label></td>
+            </tr>
+            <tr>
+                <td><label th:text="${taskResult[2][0]}"></label></td>
+                <td><label th:text="${taskResult[2][1]}"></label></td>
+                <td><label th:text="${taskResult[2][2]}"></label></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <a th:href="@{/}">На главную страницу</a>
 </body>
 </html>
