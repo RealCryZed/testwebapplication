@@ -93,7 +93,7 @@ public class Task1Controller {
 
     @PostMapping(value = "/task/1", params = "action=download")
     public ResponseEntity<Resource> download(Task1 task1) throws IOException {
-        return fileService.downloadFile(task1);
+        return fileService.downloadFileTask1(task1);
     }
 
     @PostMapping(value = "/task/1", params = "action=save")

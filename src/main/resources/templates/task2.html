@@ -61,9 +61,10 @@
                     <td><label>9</label><br/></td>
                 </tr>
             </tbody>
-        </table>
+        </table><br/>
 
         <button type="submit" name="action" value="calc">Посчитать</button>
+        <button type="submit" name="action" value="download">Экспортировать</button>
     </form>
 
     <div th:if="${(taskResult != null)}">
@@ -92,7 +93,9 @@
             </tr>
             </tbody>
         </table>
-    </div>
+
+        <p th:text="'За стоимость, равную ' + ${taskCost}"></p>
+    </div><br/>
 
     <a th:href="@{/}">На главную страницу</a>
 </body>

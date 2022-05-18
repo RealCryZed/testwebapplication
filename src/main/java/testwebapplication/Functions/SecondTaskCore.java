@@ -5,27 +5,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class SecondTaskCore {
 
-    public int[][] getNewMagicCube() {
+    public int[][] getNewMagicSquare() {
         int n = 3;
-//        int[][] magicSquare = new int[n][n];
-//        magicSquare[0][0] = 1;
-//        magicSquare[0][1] = 2;
-//        magicSquare[0][2] = 3;
-//        magicSquare[1][0] = 4;
-//        magicSquare[1][1] = 5;
-//        magicSquare[1][2] = 6;
-//        magicSquare[2][0] = 7;
-//        magicSquare[2][1] = 8;
-//        magicSquare[2][2] = 9;
-
-//        for (int i = 0; i < n; i++) {
-//            for (int j = 0; j < n; j++) {
-//                if (magicSquare[i][j] < 10)  System.out.print(" ");  // for alignment
-//                if (magicSquare[i][j] < 100) System.out.print(" ");  // for alignment
-//                System.out.print(magicSquare[i][j] + " ");
-//            }
-//            System.out.println();
-//        }
 
         int[][] magicSquare = new int[n][n];
 
@@ -67,17 +48,31 @@ public class SecondTaskCore {
             i--;
         }
 
-        // print magic square
-        System.out.println("The Magic Square for " + n
-                + ":");
-        System.out.println("Sum of each row or column "
-                + n * (n * n + 1) / 2 + ":");
-        for (i = 0; i < n; i++) {
-            for (j = 0; j < n; j++)
-                System.out.print(magicSquare[i][j] + " ");
-            System.out.println();
+        return magicSquare;
+    }
+
+    public int calcSum(int[][] magicSquare) {
+        int sum = 0;
+        int n = 3;
+
+        int[][] initialSquare = new int[n][n];
+
+        initialSquare[0][0] = 1;
+        initialSquare[0][1] = 2;
+        initialSquare[0][2] = 3;
+        initialSquare[1][0] = 4;
+        initialSquare[1][1] = 5;
+        initialSquare[1][2] = 6;
+        initialSquare[2][0] = 7;
+        initialSquare[2][1] = 8;
+        initialSquare[2][2] = 9;
+
+        for (int k = 0; k < 3; k++) {
+            for (int l = 0; l < 3; l++) {
+                sum += Math.abs(magicSquare[k][l] - initialSquare[k][l]);
+            }
         }
 
-        return magicSquare;
+        return sum;
     }
 }

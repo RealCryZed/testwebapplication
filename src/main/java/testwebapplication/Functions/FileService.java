@@ -24,7 +24,10 @@ public class FileService {
     @Autowired
     private FirstTaskCore firstTaskCore;
 
-    public ResponseEntity<Resource> downloadFile(Task1 task1) throws IOException {
+    @Autowired
+    private SecondTaskCore secondTaskCore;
+
+    public ResponseEntity<Resource> downloadFileTask1(Task1 task1) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/resources/text/task1_inputs.txt"));
         String taskName = "Given two arrays of strings a1 and a2 return a sorted array r in lexicographical order of the strings of a1 which are substrings of strings of a2.\n";
 
@@ -36,6 +39,40 @@ public class FileService {
         writer.close();
 
         Path path = Paths.get("src/main/resources/text/task1_inputs.txt");
+        Resource resource = null;
+        try {
+            resource = new UrlResource(path.toUri());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        return ResponseEntity.ok()
+                .contentType(MediaType.TEXT_PLAIN)
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
+                .body(resource);
+    }
+
+    public ResponseEntity<Resource> downloadFileTask2() throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/resources/text/task2_inputs.txt"));
+        String taskName = "Таблица 3х3, которая превращается в магический квадрат\n";
+
+        writer.append(taskName);
+        writer.append("Начальная таблица:\n" +
+                "1 2 3\n" +
+                "4 5 6\n" +
+                "7 8 9\n");
+        writer.append("Конечная таблица:\n");
+        int[][] magicSquare = secondTaskCore.getNewMagicSquare();
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++)
+                writer.append(String.valueOf(magicSquare[i][j])).append(" ");
+            writer.append("\n");
+        }
+
+        writer.append("Стоимость равна ").append(String.valueOf(secondTaskCore.calcSum(magicSquare)));
+
+        writer.close();
+
+        Path path = Paths.get("src/main/resources/text/task2_inputs.txt");
         Resource resource = null;
         try {
             resource = new UrlResource(path.toUri());
